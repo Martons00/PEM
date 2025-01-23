@@ -79,7 +79,7 @@ class Trainer(DefaultTrainer):
         evaluator_list = []
         evaluator_type = MetadataCatalog.get(dataset_name).evaluator_type
         # semantic segmentation
-        if evaluator_type in ["sem_seg", "ade20k_panoptic_seg"]:
+        if evaluator_type in ["sem_seg", "ade20k_panoptic_seg", "loveda_seg"]:
             evaluator_list.append(
                 SemSegEvaluator(
                     dataset_name,
