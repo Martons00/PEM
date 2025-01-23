@@ -17,7 +17,7 @@ DATASETS:
   TRAIN: ("loveda_train",)
   TEST: ("loveda_val",)
 SOLVER:
-  IMS_PER_BATCH: 32
+  IMS_PER_BATCH: 16
   BASE_LR: 0.0007
   MAX_ITER: 90000
   WARMUP_FACTOR: 1.0

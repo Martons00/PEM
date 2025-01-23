@@ -19,6 +19,9 @@ import itertools
 import logging
 import os
 
+from datasets.loveDa import register_loveda
+
+
 from collections import OrderedDict
 from typing import Any, Dict, List, Set
 
@@ -311,6 +314,8 @@ def main(args):
 
 
 if __name__ == "__main__":
+    # Call this before training
+    #register_loveda()
     args = default_argument_parser().parse_args()
     print("Command Line Args:", args)
     launch(

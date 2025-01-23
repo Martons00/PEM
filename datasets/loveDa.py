@@ -18,20 +18,25 @@ def load_loveda_dataset(dataset_dir, split):
         dataset_dicts.append(record)
     
     return dataset_dicts
-
 def register_loveda():
     dataset_dir = os.path.join(os.getenv("DETECTRON2_DATASETS", "datasets"), 
-                              "LoveDA")
+                              "loveDa")
     for split in ["train", "val"]:
         name = f"loveda_{split}"
         DatasetCatalog.register(name, 
             lambda s=split: load_loveda_dataset(dataset_dir, s))
+        
+        # Correct way to set metadata
         MetadataCatalog.get(name).set(
             stuff_classes=["background", "building", "road", "water", 
-                        "barren", "forest", "agriculture"],
-            evaluator_type="loveda_seg",  # Importante per l'evaluator
-            ignore_label=255  # se necessario
+                         "barren", "forest", "agriculture"],
+            evaluator_type="sem_seg",
+            ignore_label=255,
+            stuff_colors=[[0, 0, 0], [255, 0, 0], [0, 255, 0], [0, 0, 255],
+                         [255, 255, 0], [0, 255, 255], [255, 0, 255]]
         )
+
+
 
 
 # Registra automaticamente il dataset quando il modulo viene importato
